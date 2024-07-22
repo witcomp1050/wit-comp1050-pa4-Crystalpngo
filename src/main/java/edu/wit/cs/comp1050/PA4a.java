@@ -21,6 +21,24 @@ public class PA4a {
 	 */
 	public static void main(String[] args) {
 		// replace with your code
-	}
+		if (args.length != 2) {
+            System.out.println(ERR_USAGE);
+            return;
+        }
 
+        String encryptedMessage = args[0];
+        String substring = args[1];
+
+        Shifter shifter = new Shifter(encryptedMessage);
+        int[] validShifts = shifter.findShift(substring);
+
+        if (validShifts.length == 0) {
+            System.out.println(ERR_NONE);
+        } else {
+            for (int shift : validShifts) {
+                System.out.printf("%02d: %s%n", shift, shifter.shift(shift));
+            }
+        }
+    }
 }
+
